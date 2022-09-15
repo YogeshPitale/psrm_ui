@@ -1,5 +1,4 @@
-import "./Header.css";
-import logo from "./wf_logo.webp";
+import logo from "../assets/wf_logo.webp";
 
 function Header() {
   return (

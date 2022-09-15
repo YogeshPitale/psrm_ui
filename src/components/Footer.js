@@ -1,5 +1,4 @@
-import "./Footer.css";
-import logo from "./WellsFargoLogo.png";
+import logo from "../assets/WellsFargoLogo.png";
 
 function Footer() {
   return (
