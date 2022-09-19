@@ -49,10 +49,12 @@ body {
 body {
   background-color: #fffcfc;
   background-image: url("https://www.transparenttextures.com/patterns/light-wool.png");
+
 }
 
 h2 {
   color: #cd1409;
+  margin-bottom:5px;
 }
 
 table {

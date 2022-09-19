@@ -3,12 +3,13 @@ import Tooltip from "@mui/material/Tooltip";
 
 function MonitorTable(props) {
   function myFormat(num) {
-    if (num > 0) {
+    /*if (num > 0) {
       return (num / Math.pow(10, num.toString().length - 1)).toFixed(2);
     } else {
       var n = -num;
       return -(n / Math.pow(10, n.toString().length - 1)).toFixed(2);
-    }
+    }*/
+    return num;
   }
 
   let dollarUSLocale = Intl.NumberFormat("en-US");
@@ -50,11 +51,10 @@ function MonitorTable(props) {
                 <Button
                   style={{
                     maxHeight: "15px",
-                    paddingLeft: "0px",
                     color: "black",
                   }}
                 >
-                  ${myFormat(props.data.netFedWirePosition)}
+                  ${dollarUSLocale.format(props.data.netFedWirePosition)}
                 </Button>
               </Tooltip>
             </td>
@@ -65,11 +65,10 @@ function MonitorTable(props) {
               <Button
                 style={{
                   maxHeight: "15px",
-                  paddingLeft: "0px",
                   color: "black",
                 }}
               >
-                ${myFormat(props.data.fedwireCredits)}
+                ${dollarUSLocale.format(props.data.fedwireCredits)}
               </Button>
             </td>
           </tr>
@@ -79,11 +78,10 @@ function MonitorTable(props) {
               <Button
                 style={{
                   maxHeight: "15px",
-                  paddingLeft: "0px",
                   color: "black",
                 }}
               >
-                ${myFormat(props.data.fedwireDebits)}
+                ${dollarUSLocale.format(props.data.fedwireDebits)}
               </Button>
             </td>
           </tr>

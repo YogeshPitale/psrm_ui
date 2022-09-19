@@ -1,10 +1,11 @@
+import React from "react";
 import ReactApexChart from "react-apexcharts";
 
-function LineChart(props) {
+const DynamicLineChart = (props) => {
   const series = [
     {
       name: "Current Position",
-      data: props.dataPoints,
+      data: props.dataPoints.slice(-15),
     },
   ];
   const options = {
@@ -17,15 +18,28 @@ function LineChart(props) {
       toolbar: {
         show: false,
       },
+      animations: {
+             enabled: false,
+             easing: 'easeinout',
+             speed: 500,
+             animateGradually: {
+                 enabled: false,
+                 delay: 500
+             },
+             dynamicAnimation: {
+                 enabled: true,
+                 speed: 500
+             }
+         },
     },
     dataLabels: {
       enabled: false,
     },
     stroke: {
-      curve: "straight",
+      curve: "smooth",
     },
     title: {
-      text: "Current Position by Time",
+      text: "Current Position by Timestamp",
       align: "left",
     },
     grid: {
@@ -38,18 +52,21 @@ function LineChart(props) {
       type: "numeric",
       tickPlacement: "between",
       title: {
-        text: "Timestamp (mm:ss*)",
+        text: "Timestamp (hh:mm:ss*)",
       },
-      labels: {
-            show: props.dataPoints.length <= 10 ? true : false
-          },
+      // labels: {
+      //   show: props.dataPoints.length <= 10 ? true : false,
+      // },
     },
     yaxis: {
       type: "numeric",
       tickPlacement: "between",
       title: {
-        text: "Current Position in $",
+        text: "Current Position",
       },
+    },
+    legend: {
+      show: false,
     },
   };
 
@@ -64,6 +81,6 @@ function LineChart(props) {
       />
     </div>
   );
-}
+};
 
-export default LineChart;
+export default DynamicLineChart;
