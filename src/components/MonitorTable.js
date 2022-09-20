@@ -1,16 +1,17 @@
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
+import { Link } from "react-router-dom";
 
 function MonitorTable(props) {
-  function myFormat(num) {
-    /*if (num > 0) {
-      return (num / Math.pow(10, num.toString().length - 1)).toFixed(2);
-    } else {
-      var n = -num;
-      return -(n / Math.pow(10, n.toString().length - 1)).toFixed(2);
-    }*/
-    return num;
-  }
+  // function myFormat(num) {
+  //   /*if (num > 0) {
+  //     return (num / Math.pow(10, num.toString().length - 1)).toFixed(2);
+  //   } else {
+  //     var n = -num;
+  //     return -(n / Math.pow(10, n.toString().length - 1)).toFixed(2);
+  //   }*/
+  //   return num;
+  // }
 
   let dollarUSLocale = Intl.NumberFormat("en-US");
 
@@ -60,7 +61,11 @@ function MonitorTable(props) {
             </td>
           </tr>
           <tr>
-            <th>Fedwire Credits</th>
+            <th>
+              <Link to={`/credit-drill-down/${props.data.timeStamp}`}>
+                Fedwire Credits
+              </Link>
+            </th>
             <td>
               <Button
                 style={{
@@ -73,7 +78,9 @@ function MonitorTable(props) {
             </td>
           </tr>
           <tr>
-            <th>Fedwire Debits</th>
+            <th>
+              <Link to="/debit-drill-down">Fedwire Debits</Link>
+            </th>
             <td>
               <Button
                 style={{

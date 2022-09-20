@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import LineChart from "./LineChart";
 import Grid from "@mui/material/Grid";
 import MonitorTable from "./MonitorTable";
-import DynamicLineChart from "./DynamicLineChart"
+import DynamicLineChart from "./DynamicLineChart";
 
-function LandingPage(params) {
+function LandingPage() {
   const [data, setData] = useState({
     currentPosition: 0,
     initialBalance: 0,
@@ -43,17 +42,6 @@ function LandingPage(params) {
     }
   }, [data]);
 
-  // function myFormat(num) {
-  //   if (num > 0) {
-  //     return (num / Math.pow(10, num.toString().length - 1)).toFixed(2);
-  //   } else {
-  //     var n = -num;
-  //     return -(n / Math.pow(10, n.toString().length - 1)).toFixed(2);
-  //   }
-  // }
-
-  // let dollarUSLocale = Intl.NumberFormat("en-US");
-
   var ttData = (
     <div style={{ whiteSpace: "pre-line" }}>
       {"No. of Messages: " + dataPoints.length + "\nPayment Rails : Wires"}
@@ -65,10 +53,10 @@ function LandingPage(params) {
       <h2>Payments System Risk Monitor Position Report (in 1000's)</h2>
 
       <Grid container>
-        <Grid item xs={5} style={{marginRight:"-1px" }}>
-          <MonitorTable data={data} ttData={ttData} />
+        <Grid item xs={5} style={{ marginRight: "-1px" }}>
+          <MonitorTable data={data} ttData={ttData} len={dataPoints.length} />
         </Grid>
-        <Grid item xs={7} style={{ marginTop: "20px"}}>
+        <Grid item xs={7} style={{ marginTop: "20px" }}>
           <DynamicLineChart dataPoints={dataPoints} />
         </Grid>
       </Grid>
