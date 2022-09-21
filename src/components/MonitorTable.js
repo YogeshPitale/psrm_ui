@@ -1,17 +1,30 @@
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
-import { Link } from "react-router-dom";
+import SlidingPane from "react-sliding-pane";
+import "react-sliding-pane/dist/react-sliding-pane.css";
+import DebitDrillDown from "./DebitDrillDown";
+import CreditDrillDown from "./CreditDrillDown";
+import axios from "axios";
 
 function MonitorTable(props) {
-  // function myFormat(num) {
-  //   /*if (num > 0) {
-  //     return (num / Math.pow(10, num.toString().length - 1)).toFixed(2);
-  //   } else {
-  //     var n = -num;
-  //     return -(n / Math.pow(10, n.toString().length - 1)).toFixed(2);
-  //   }*/
-  //   return num;
-  // }
+  const [trans, setTrans] = useState([]);
+
+  const [isPaneOpen, setIsPaneOpen] = useState({
+    ofCredits: false,
+    ofDebits: false,
+  });
+
+  useEffect(() => {
+    console.log("here");
+    axios
+      .get("http://localhost:8091/v1/psrm/risk-monitor")
+      .then((res) => {
+        console.log(res.data);
+        setTrans(res.data);
+      })
+      .catch((err) => console.log(err));
+  }, [props.data]);
 
   let dollarUSLocale = Intl.NumberFormat("en-US");
 
@@ -62,9 +75,9 @@ function MonitorTable(props) {
           </tr>
           <tr>
             <th>
-              <Link to={`/credit-drill-down/${props.data.timeStamp}`}>
+              <button onClick={() => setIsPaneOpen({ ofCredits: true })}>
                 Fedwire Credits
-              </Link>
+              </button>
             </th>
             <td>
               <Button
@@ -79,7 +92,9 @@ function MonitorTable(props) {
           </tr>
           <tr>
             <th>
-              <Link to="/debit-drill-down">Fedwire Debits</Link>
+              <button onClick={() => setIsPaneOpen({ ofDebits: true })}>
+                Fedwire Debits
+              </button>
             </th>
             <td>
               <Button
@@ -146,6 +161,30 @@ function MonitorTable(props) {
           </tr>
         </tbody>
       </table>
+      <SlidingPane
+        className="some-custom-class"
+        overlayClassName="some-custom-overlay-class"
+        isOpen={isPaneOpen.ofDebits}
+        title="Debits Transactions"
+        onRequestClose={() => {
+          // triggered on "<" on left top click or on outside click
+          setIsPaneOpen({ ofDebits: false });
+        }}
+      >
+        <DebitDrillDown debits={trans} />
+      </SlidingPane>
+      <SlidingPane
+        className="some-custom-class"
+        overlayClassName="some-custom-overlay-class"
+        isOpen={isPaneOpen.ofCredits}
+        title="Credits Transactions"
+        onRequestClose={() => {
+          // triggered on "<" on left top click or on outside click
+          setIsPaneOpen({ ofCredits: false });
+        }}
+      >
+        <CreditDrillDown credits={trans} />
+      </SlidingPane>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -6,41 +6,15 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useParams } from "react-router-dom";
-import axios from "axios";
 
-// useEffect(() => {
-//   CreditDrillDown();
-// }, []);
-
-const CreditDrillDown = () => {
-  const { len } = useParams();
-  const [credits, setCredits] = useState([]);
-
-  // useEffect(() => {
-  //   fetch("http://localhost:8091/v1/psrm/risk-monitor")
-  //     .then((response) => response.json())
-  //     .then((data) => setCredits(data));
-  // }, [len]);
-
-  useEffect(() => {
-    const axiosPosts = async () => {
-      const response = await axios(
-        "http://localhost:8091/v1/psrm/risk-monitor"
-      );
-      setCredits(response.data);
-      console.log(response.data);
-    };
-    axiosPosts();
-  }, [len]);
-
+const CreditDrillDown = (props) => {
   return (
     <div>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell>ID</TableCell>
+              <TableCell>Transaction No.</TableCell>
               <TableCell>Name of the Bank</TableCell>
               <TableCell>Amount</TableCell>
               <TableCell>Timestamp</TableCell>
@@ -48,18 +22,20 @@ const CreditDrillDown = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {credits.map((row) => (
-              <TableRow
-                key={row.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                <TableCell>{row.id}</TableCell>
-                <TableCell>{row.nm}</TableCell>
-                <TableCell>{row.fedwireCredits}</TableCell>
-                <TableCell>{row.timeStamp}</TableCell>
-                <TableCell>Released</TableCell>
-              </TableRow>
-            ))}
+            {props.credits
+              .filter((row) => row.creditAmt > 1)
+              .map((row, i) => (
+                <TableRow
+                  key={i}
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>{row.id}</TableCell>
+                  <TableCell>{row.nm}</TableCell>
+                  <TableCell>{row.creditAmt}</TableCell>
+                  <TableCell>{row.timeStamp}</TableCell>
+                  <TableCell>{row.status}</TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import MonitorTable from "./MonitorTable";
 import DynamicLineChart from "./DynamicLineChart";
+import axios from "axios";
 
 function LandingPage() {
   const [data, setData] = useState({
@@ -42,6 +43,15 @@ function LandingPage() {
     }
   }, [data]);
 
+  const [onHoldCount, setOnHoldCount] = useState(0);
+  useEffect(() => {
+    fetch("http://localhost:8091/v1/psrm/count")
+      .then((res) => res.json())
+      .then((json) => {
+        setOnHoldCount(json);
+      });
+  }, [data]);
+
   var ttData = (
     <div style={{ whiteSpace: "pre-line" }}>
       {"No. of Messages: " + dataPoints.length + "\nPayment Rails : Wires"}
@@ -57,6 +67,13 @@ function LandingPage() {
           <MonitorTable data={data} ttData={ttData} len={dataPoints.length} />
         </Grid>
         <Grid item xs={7} style={{ marginTop: "20px" }}>
+          <b
+            style={{
+              color: "#cd1409",
+            }}
+          >
+            On Hold Count : {onHoldCount}
+          </b>
           <DynamicLineChart dataPoints={dataPoints} />
         </Grid>
       </Grid>
