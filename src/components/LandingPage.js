@@ -45,11 +45,9 @@ function LandingPage() {
 
   const [onHoldCount, setOnHoldCount] = useState(0);
   useEffect(() => {
-    fetch("http://localhost:8091/v1/psrm/count")
-      .then((res) => res.json())
-      .then((json) => {
-        setOnHoldCount(json);
-      });
+    axios
+      .get("http://localhost:8091/v1/psrm/count")
+      .then((res) => setOnHoldCount(res.data));
   }, [data]);
 
   var ttData = (
@@ -67,13 +65,7 @@ function LandingPage() {
           <MonitorTable data={data} ttData={ttData} len={dataPoints.length} />
         </Grid>
         <Grid item xs={7} style={{ marginTop: "20px" }}>
-          <b
-            style={{
-              color: "#cd1409",
-            }}
-          >
-            On Hold Count : {onHoldCount}
-          </b>
+          <b>On Hold Count : {onHoldCount}</b>
           <DynamicLineChart dataPoints={dataPoints} />
         </Grid>
       </Grid>

@@ -16,7 +16,6 @@ function MonitorTable(props) {
   });
 
   useEffect(() => {
-    console.log("here");
     axios
       .get("http://localhost:8091/v1/psrm/risk-monitor")
       .then((res) => {

@@ -140,6 +140,6 @@ button {
   outline: inherit;
 }
 
-/* .App b {
-  text-align: left !important;
-} */
+.App b {
+  color: #cd1409 !important;
+}
