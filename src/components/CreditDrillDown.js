@@ -19,6 +19,7 @@ const CreditDrillDown = (props) => {
               <TableCell>Amount</TableCell>
               <TableCell>Timestamp</TableCell>
               <TableCell>Status</TableCell>
+              <TableCell>Payment Rail</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -34,6 +35,7 @@ const CreditDrillDown = (props) => {
                   <TableCell>{row.creditAmt}</TableCell>
                   <TableCell>{row.timeStamp}</TableCell>
                   <TableCell>{row.status}</TableCell>
+                  <TableCell>{row.pmtRail}</TableCell>
                 </TableRow>
               ))}
           </TableBody>

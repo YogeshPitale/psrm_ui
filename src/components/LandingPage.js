@@ -27,7 +27,7 @@ function LandingPage() {
     sse.onerror = () => {
       sse.close();
     };
-  }, [data]);
+  }, []);
 
   useEffect(() => {
     if (data.initialBalance !== null && data.initialBalance !== 0) {
@@ -70,9 +70,9 @@ function LandingPage() {
           <b
             style={{
               color: "#cd1409",
-              padding:"5px",
-              background:"#ddd",
-              border:"1px dashed #666",
+              padding: "5px",
+              background: "#ddd",
+              border: "1px dashed #666",
             }}
           >
             Transactions On Hold : {onHoldCount}
