@@ -20,6 +20,7 @@ const DebitDrillDown = (props) => {
               <TableCell>Timestamp</TableCell>
               <TableCell>Status</TableCell>
               <TableCell>Payment Rail</TableCell>
+              <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -36,6 +37,11 @@ const DebitDrillDown = (props) => {
                   <TableCell>{row.timeStamp}</TableCell>
                   <TableCell>{row.status}</TableCell>
                   <TableCell>{row.pmtRail}</TableCell>
+                  <TableCell>
+                    {row.status === "On Hold" && (
+                      <button className="button">Release</button>
+                    )}
+                  </TableCell>
                 </TableRow>
               ))}
           </TableBody>

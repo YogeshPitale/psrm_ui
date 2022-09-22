@@ -19,18 +19,18 @@ const DynamicLineChart = (props) => {
         show: false,
       },
       animations: {
-             enabled: false,
-             easing: 'easeinout',
-             speed: 500,
-             animateGradually: {
-                 enabled: false,
-                 delay: 500
-             },
-             dynamicAnimation: {
-                 enabled: true,
-                 speed: 500
-             }
-         },
+        enabled: false,
+        easing: "easeinout",
+        speed: 500,
+        animateGradually: {
+          enabled: false,
+          delay: 500,
+        },
+        dynamicAnimation: {
+          enabled: true,
+          speed: 500,
+        },
+      },
     },
     dataLabels: {
       enabled: false,
@@ -71,7 +71,7 @@ const DynamicLineChart = (props) => {
   };
 
   return (
-    <div id="chart">
+    <div id="chart" style={{ marginTop: "15px" }}>
       <ReactApexChart
         options={options}
         series={series}
