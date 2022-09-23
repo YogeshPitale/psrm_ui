@@ -19,7 +19,7 @@ function MonitorTable(props) {
     axios
       .get("http://localhost:8091/v1/psrm/risk-monitor")
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setTrans(res.data);
       })
       .catch((err) => console.log(err));
@@ -60,7 +60,16 @@ function MonitorTable(props) {
           <tr>
             <th>Net Fedwire</th>
             <td>
-              <Tooltip title={props.ttData} placement="right">
+              <Tooltip
+                title={
+                  <div style={{ whiteSpace: "pre-line" }}>
+                    {"No. of Messages: " +
+                      props.len +
+                      "\nPayment Rails : Wires"}
+                  </div>
+                }
+                placement="right"
+              >
                 <Button
                   style={{
                     maxHeight: "15px",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 const DebitDrillDown = (props) => {
+  const [isSort, setIsSort] = useState(false);
   return (
     <div>
       <TableContainer component={Paper}>
@@ -18,33 +19,68 @@ const DebitDrillDown = (props) => {
               <TableCell>Name of the Bank</TableCell>
               <TableCell>Amount</TableCell>
               <TableCell>Timestamp</TableCell>
-              <TableCell>Status</TableCell>
+              <TableCell>
+                Status{" "}
+                <button onClick={() => setIsSort(!isSort)}>
+                  <i
+                    className="fa fa-arrow-down"
+                    style={{ color: isSort && "#cd1409" }}
+                  ></i>
+                </button>
+              </TableCell>
               <TableCell>Payment Rail</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {props.debits
-              .filter((row) => row.debitAmt > 1)
-              .map((row, i) => (
-                <TableRow
-                  key={i}
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell>{row.id}</TableCell>
-                  <TableCell>{row.nm}</TableCell>
-                  <TableCell>{row.debitAmt}</TableCell>
-                  <TableCell>{row.timeStamp}</TableCell>
-                  <TableCell>{row.status}</TableCell>
-                  <TableCell>{row.pmtRail}</TableCell>
-                  <TableCell>
-                    {row.status === "On Hold" && (
-                      <button className="button">Release</button>
-                    )}
-                  </TableCell>
-                </TableRow>
-              ))}
-          </TableBody>
+          {!isSort && (
+            <TableBody>
+              {[...props.debits]
+                .filter((row) => row.debitAmt > 1)
+                .map((row, i) => (
+                  <TableRow
+                    key={i}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell>{row.id}</TableCell>
+                    <TableCell>{row.nm}</TableCell>
+                    <TableCell>{row.debitAmt}</TableCell>
+                    <TableCell>{row.timeStamp}</TableCell>
+                    <TableCell>{row.status}</TableCell>
+                    <TableCell>{row.pmtRail}</TableCell>
+                    <TableCell>
+                      {row.status === "On Hold" && (
+                        <button className="button">Release</button>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          )}
+          {isSort && (
+            <TableBody>
+              {[...props.debits]
+                .sort((a, b) => a.status.localeCompare(b.status))
+                .filter((row) => row.debitAmt > 1)
+                .map((row, i) => (
+                  <TableRow
+                    key={i}
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell>{row.id}</TableCell>
+                    <TableCell>{row.nm}</TableCell>
+                    <TableCell>{row.debitAmt}</TableCell>
+                    <TableCell>{row.timeStamp}</TableCell>
+                    <TableCell>{row.status}</TableCell>
+                    <TableCell>{row.pmtRail}</TableCell>
+                    <TableCell>
+                      {row.status === "On Hold" && (
+                        <button className="button">Release</button>
+                      )}
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          )}
         </Table>
       </TableContainer>
     </div>

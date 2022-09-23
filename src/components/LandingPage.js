@@ -52,11 +52,11 @@ function LandingPage() {
       });
   }, [data]);
 
-  var ttData = (
-    <div style={{ whiteSpace: "pre-line" }}>
-      {"No. of Messages: " + dataPoints.length + "\nPayment Rails : Wires"}
-    </div>
-  );
+  // var ttData = (
+  //   <div style={{ whiteSpace: "pre-line" }}>
+  //     {"No. of Messages: " + dataPoints.length + "\nPayment Rails : Wires"}
+  //   </div>
+  // );
 
   return (
     <div className="App">
@@ -64,7 +64,7 @@ function LandingPage() {
 
       <Grid container>
         <Grid item xs={5} style={{ marginRight: "-1px" }}>
-          <MonitorTable data={data} ttData={ttData} len={dataPoints.length} />
+          <MonitorTable data={data} len={dataPoints.length} />
         </Grid>
         <Grid item xs={7} style={{ marginTop: "20px", paddingTop: "6px" }}>
           <b>Transactions On Hold : {onHoldCount}</b>
