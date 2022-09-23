@@ -17,6 +17,7 @@ const DebitDrillDown = (props) => {
             <TableRow>
               <TableCell>Transaction No.</TableCell>
               <TableCell>Name of the Bank</TableCell>
+              <TableCell>Payment Rail</TableCell>
               <TableCell>Amount</TableCell>
               <TableCell>Timestamp</TableCell>
               <TableCell>
@@ -28,7 +29,6 @@ const DebitDrillDown = (props) => {
                   ></i>
                 </button>
               </TableCell>
-              <TableCell>Payment Rail</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
@@ -43,10 +43,10 @@ const DebitDrillDown = (props) => {
                   >
                     <TableCell>{row.id}</TableCell>
                     <TableCell>{row.nm}</TableCell>
+                    <TableCell>{row.pmtRail}</TableCell>
                     <TableCell>{row.debitAmt}</TableCell>
                     <TableCell>{row.timeStamp}</TableCell>
                     <TableCell>{row.status}</TableCell>
-                    <TableCell>{row.pmtRail}</TableCell>
                     <TableCell>
                       {row.status === "On Hold" && (
                         <button className="button">Release</button>
@@ -68,13 +68,13 @@ const DebitDrillDown = (props) => {
                   >
                     <TableCell>{row.id}</TableCell>
                     <TableCell>{row.nm}</TableCell>
+                    <TableCell>{row.pmtRail}</TableCell>
                     <TableCell>{row.debitAmt}</TableCell>
                     <TableCell>{row.timeStamp}</TableCell>
                     <TableCell>{row.status}</TableCell>
-                    <TableCell>{row.pmtRail}</TableCell>
                     <TableCell>
                       {row.status === "On Hold" && (
-                        <button className="button">Release</button>
+                        <button className="button">Investigate</button>
                       )}
                     </TableCell>
                   </TableRow>

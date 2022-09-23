@@ -66,8 +66,8 @@ function LandingPage() {
         <Grid item xs={5} style={{ marginRight: "-1px" }}>
           <MonitorTable data={data} len={dataPoints.length} />
         </Grid>
-        <Grid item xs={7} style={{ marginTop: "20px", paddingTop: "6px" }}>
-          <b>Transactions On Hold : {onHoldCount}</b>
+        <Grid item xs={7} style={{ marginTop: "20px",paddingTop: "6px" }}>
+          <p style={{ marginTop: "-5px", paddingBottom:"20px",paddingTop: "6px" }}><b>Transactions On Hold : {onHoldCount}</b></p>
           <DynamicLineChart dataPoints={dataPoints} />
         </Grid>
       </Grid>

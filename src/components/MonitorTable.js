@@ -31,19 +31,20 @@ function MonitorTable(props) {
     <div>
       <table className="styled-table">
         <tbody>
-          <tr>
-            <th>Current Position</th>
-            <td>
-              <Button
-                style={{
-                  maxHeight: "15px",
-                  color: "black",
-                }}
-              >
-                ${dollarUSLocale.format(props.data.currentPosition)}
-              </Button>
-            </td>
-          </tr>
+           <tr style={{background:"#ccc",fontWeight:"bold"}}>
+              <th style={{color: "red",fontSize:"16px"}}>Current Position</th>
+              <td>
+                <Button
+                  style={{
+                    maxHeight: "15px",
+                    color: "red",
+                    fontSize:"16px"
+                  }}
+                >
+                  ${dollarUSLocale.format(props.data.currentPosition)}
+                </Button>
+              </td>
+            </tr>
           <tr>
             <th>Opening Balance (in 1000's)</th>
             <td>
@@ -173,7 +174,7 @@ function MonitorTable(props) {
         className="some-custom-class"
         overlayClassName="some-custom-overlay-class"
         isOpen={isPaneOpen.ofDebits}
-        title="Debits Transactions"
+        title="Debit Transactions"
         onRequestClose={() => {
           // triggered on "<" on left top click or on outside click
           setIsPaneOpen({ ofDebits: false });
@@ -185,7 +186,7 @@ function MonitorTable(props) {
         className="some-custom-class"
         overlayClassName="some-custom-overlay-class"
         isOpen={isPaneOpen.ofCredits}
-        title="Credits Transactions"
+        title="Credit Transactions"
         onRequestClose={() => {
           // triggered on "<" on left top click or on outside click
           setIsPaneOpen({ ofCredits: false });

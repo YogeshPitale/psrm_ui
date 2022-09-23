@@ -16,10 +16,10 @@ const CreditDrillDown = (props) => {
             <TableRow>
               <TableCell>Transaction No.</TableCell>
               <TableCell>Name of the Bank</TableCell>
+              <TableCell>Payment Rail</TableCell>
               <TableCell>Amount</TableCell>
               <TableCell>Timestamp</TableCell>
               <TableCell>Status</TableCell>
-              <TableCell>Payment Rail</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -32,10 +32,10 @@ const CreditDrillDown = (props) => {
                 >
                   <TableCell>{row.id}</TableCell>
                   <TableCell>{row.nm}</TableCell>
+                  <TableCell>{row.pmtRail}</TableCell>
                   <TableCell>{row.creditAmt}</TableCell>
                   <TableCell>{row.timeStamp}</TableCell>
                   <TableCell>{row.status}</TableCell>
-                  <TableCell>{row.pmtRail}</TableCell>
                 </TableRow>
               ))}
           </TableBody>
