@@ -71,7 +71,7 @@ const DynamicLineChart = (props) => {
   };
 
   return (
-    <div id="chart" style={{ marginTop: "15px" }}>
+    <div id="chart" style={{ marginTop: "-25px" }}>
       <ReactApexChart
         options={options}
         series={series}

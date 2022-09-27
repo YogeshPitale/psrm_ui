@@ -16,13 +16,14 @@ function MonitorTable(props) {
   });
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8091/v1/psrm/risk-monitor")
-      .then((res) => {
-        // console.log(res.data);
-        setTrans(res.data);
-      })
-      .catch((err) => console.log(err));
+    if (props.data.initialBalance !== null && props.data.initialBalance !== 0)
+      axios
+        .get("http://localhost:8091/v1/psrm/risk-monitor")
+        .then((res) => {
+          // console.log(res.data);
+          setTrans(res.data);
+        })
+        .catch((err) => console.log(err));
   }, [props.data]);
 
   let dollarUSLocale = Intl.NumberFormat("en-US");
@@ -31,20 +32,20 @@ function MonitorTable(props) {
     <div>
       <table className="styled-table">
         <tbody>
-           <tr style={{background:"#ccc",fontWeight:"bold"}}>
-              <th style={{color: "red",fontSize:"16px"}}>Current Position</th>
-              <td>
-                <Button
-                  style={{
-                    maxHeight: "15px",
-                    color: "red",
-                    fontSize:"16px"
-                  }}
-                >
-                  ${dollarUSLocale.format(props.data.currentPosition)}
-                </Button>
-              </td>
-            </tr>
+          <tr style={{ background: "#ccc", fontWeight: "bold" }}>
+            <th style={{ color: "red", fontSize: "16px" }}>Current Position</th>
+            <td>
+              <Button
+                style={{
+                  maxHeight: "15px",
+                  color: "red",
+                  fontSize: "16px",
+                }}
+              >
+                ${dollarUSLocale.format(props.data.currentPosition)}
+              </Button>
+            </td>
+          </tr>
           <tr>
             <th>Opening Balance (in 1000's)</th>
             <td>
