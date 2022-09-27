@@ -1,47 +1,14 @@
 import React, { useState, useEffect } from "react";
-import Grid from "@mui/material/Grid";
 import MonitorTable from "./MonitorTable";
 import DynamicLineChart from "./DynamicLineChart";
+import Grid from "@mui/material/Grid";
 import Switch from "@mui/material/Switch";
-import axios from "axios";
 import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import Button from "@mui/material/Button";
+import axios from "axios";
 
 function LandingPage() {
-  const [checked, setChecked] = useState(false);
-  const [amount, setAmount] = useState(0);
-
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
-
-  let initialRender = React.useRef(0);
-
-  useEffect(() => {
-    if (initialRender.current > 1) {
-      axios
-        .post(`http://localhost:8091/v1/psrm/throttle?throttleValue=${checked}`)
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    } else {
-      initialRender.current += 1;
-    }
-  }, [checked]);
-
-  const handleKeyDown = () => {
-    axios
-      .post(`http://localhost:8091/v1/psrm/amount?amount=${amount}`)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
   const [data, setData] = useState({
     currentPosition: 0,
     initialBalance: 0,
@@ -52,8 +19,11 @@ function LandingPage() {
     safetyfactor: 0,
     maxAvailable: 0,
   });
-
   const [dataPoints, setDataPoints] = useState([]);
+  const [onHoldCount, setOnHoldCount] = useState(0);
+  const [checked, setChecked] = useState(false);
+  const [amount, setAmount] = useState(800000);
+
   let initialRender2 = React.useRef(false);
   useEffect(() => {
     if (initialRender2.current) {
@@ -85,7 +55,6 @@ function LandingPage() {
     }
   }, [data]);
 
-  const [onHoldCount, setOnHoldCount] = useState(0);
   useEffect(() => {
     if (data.initialBalance !== null && data.initialBalance !== 0)
       fetch("http://localhost:8091/v1/psrm/count")
@@ -94,6 +63,37 @@ function LandingPage() {
           setOnHoldCount(json);
         });
   }, [data]);
+
+  let initialRender = React.useRef(0);
+  useEffect(() => {
+    if (initialRender.current > 1) {
+      axios
+        .post(`http://localhost:8091/v1/psrm/throttle?throttleValue=${checked}`)
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
+      initialRender.current += 1;
+    }
+  }, [checked]);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
+  const handleKeyDown = () => {
+    axios
+      .post(`http://localhost:8091/v1/psrm/amount?amount=${amount}`)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="App">
@@ -141,18 +141,28 @@ function LandingPage() {
               }}
             >
               <TextField
-                label="Debit Throttle Amount"
+                label="Rule"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">$</InputAdornment>
+                  ),
+                }}
+                sx={{ width: "10ch" }}
                 variant="standard"
                 color="warning"
                 value={amount}
                 onChange={(event) => setAmount(event.target.value)}
                 focused
-                onKeyDown={(event) => {
-                  event.key === "Enter"
-                    ? handleKeyDown()
-                    : setAmount(event.target.value);
-                }}
               />
+              <Button
+                variant="text"
+                style={{ marginTop: "17px", marginLeft: "5px" }}
+                onClick={handleKeyDown}
+                size="small"
+                color="error"
+              >
+                Submit
+              </Button>
             </Grid>
           </Grid>
           <DynamicLineChart dataPoints={dataPoints} />

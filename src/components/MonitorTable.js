@@ -36,6 +36,7 @@ function MonitorTable(props) {
             <th style={{ color: "red", fontSize: "16px" }}>Current Position</th>
             <td>
               <Button
+                disabled={true}
                 style={{
                   maxHeight: "15px",
                   color: "red",
@@ -50,6 +51,7 @@ function MonitorTable(props) {
             <th>Opening Balance (in 1000's)</th>
             <td>
               <Button
+                disabled={true}
                 style={{
                   maxHeight: "15px",
                   color: "black",
@@ -91,6 +93,7 @@ function MonitorTable(props) {
             </th>
             <td>
               <Button
+                disabled={true}
                 style={{
                   maxHeight: "15px",
                   color: "black",
@@ -108,6 +111,7 @@ function MonitorTable(props) {
             </th>
             <td>
               <Button
+                disabled={true}
                 style={{
                   maxHeight: "15px",
                   color: "black",
@@ -121,6 +125,7 @@ function MonitorTable(props) {
             <th>Cap</th>
             <td>
               <Button
+                disabled={true}
                 style={{
                   maxHeight: "15px",
                   color: "black",
@@ -134,6 +139,7 @@ function MonitorTable(props) {
             <th>Safety Factor</th>
             <td>
               <Button
+                disabled={true}
                 style={{
                   maxHeight: "15px",
                   color: "black",
@@ -147,6 +153,7 @@ function MonitorTable(props) {
             <th>Max Available</th>
             <td>
               <Button
+                disabled={true}
                 style={{
                   maxHeight: "15px",
                   color: "black",
@@ -160,6 +167,7 @@ function MonitorTable(props) {
             <th>Last Wire Received</th>
             <td>
               <Button
+                disabled={true}
                 style={{
                   maxHeight: "15px",
                   color: "black",
