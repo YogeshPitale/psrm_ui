@@ -49,7 +49,7 @@ const DebitDrillDown = (props) => {
                     <TableCell>{row.status}</TableCell>
                     <TableCell>
                       {row.status === "On Hold" && (
-                        <button className="button">Release</button>
+                        <button className="button">Investigate</button>
                       )}
                     </TableCell>
                   </TableRow>
