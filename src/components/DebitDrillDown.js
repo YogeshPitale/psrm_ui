@@ -6,9 +6,22 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
 
 const DebitDrillDown = (props) => {
   const [isSort, setIsSort] = useState(false);
+  function Chapters({ value }) {
+    const chapters = value.split(",");
+
+    return (
+      <List disablePadding dense>
+        {chapters.map((chapter, i) => (
+          <ListItem key={i}>{chapter}</ListItem>
+        ))}
+      </List>
+    );
+  }
   return (
     <div>
       <TableContainer component={Paper}>
@@ -29,6 +42,7 @@ const DebitDrillDown = (props) => {
                   ></i>
                 </button>
               </TableCell>
+              <TableCell>Reson For Hold</TableCell>
               <TableCell>Action</TableCell>
             </TableRow>
           </TableHead>
@@ -47,6 +61,11 @@ const DebitDrillDown = (props) => {
                     <TableCell>{row.debitAmt}</TableCell>
                     <TableCell>{row.timeStamp}</TableCell>
                     <TableCell>{row.status}</TableCell>
+                    <TableCell>
+                      {row.reasonForHold != null && (
+                        <Chapters value={row.reasonForHold.slice(1, -1)} />
+                      )}
+                    </TableCell>
                     <TableCell>
                       {row.status === "On Hold" && (
                         <button className="button">Investigate</button>
@@ -72,6 +91,11 @@ const DebitDrillDown = (props) => {
                     <TableCell>{row.debitAmt}</TableCell>
                     <TableCell>{row.timeStamp}</TableCell>
                     <TableCell>{row.status}</TableCell>
+                    <TableCell>
+                      {row.reasonForHold != null && (
+                        <Chapters value={row.reasonForHold.slice(1, -1)} />
+                      )}
+                    </TableCell>
                     <TableCell>
                       {row.status === "On Hold" && (
                         <button className="button">Investigate</button>

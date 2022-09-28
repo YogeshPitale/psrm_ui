@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import MonitorTable from "./MonitorTable";
 import DynamicLineChart from "./DynamicLineChart";
-import Grid from "@mui/material/Grid";
-import Switch from "@mui/material/Switch";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
-import Button from "@mui/material/Button";
+import CloseIcon from "@mui/icons-material/Close";
+import {
+  Grid,
+  Switch,
+  TextField,
+  InputAdornment,
+  Button,
+  Snackbar,
+  IconButton,
+} from "@mui/material";
 import axios from "axios";
 
 function LandingPage() {
@@ -23,6 +28,7 @@ function LandingPage() {
   const [onHoldCount, setOnHoldCount] = useState(0);
   const [checked, setChecked] = useState(false);
   const [amount, setAmount] = useState(800000);
+  const [open, setOpen] = React.useState(false);
 
   let initialRender2 = React.useRef(false);
   useEffect(() => {
@@ -70,7 +76,7 @@ function LandingPage() {
       axios
         .post(`http://localhost:8091/v1/psrm/throttle?throttleValue=${checked}`)
         .then(function (response) {
-          console.log(response);
+          // console.log(response);
         })
         .catch(function (error) {
           console.log(error);
@@ -88,12 +94,41 @@ function LandingPage() {
     axios
       .post(`http://localhost:8091/v1/psrm/amount?amount=${amount}`)
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
+        handleClick();
       })
       .catch(function (error) {
         console.log(error);
       });
   };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const action = (
+    <React.Fragment>
+      {/* <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button> */}
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
   return (
     <div className="App">
@@ -168,6 +203,14 @@ function LandingPage() {
           <DynamicLineChart dataPoints={dataPoints} />
         </Grid>
       </Grid>
+      <Snackbar
+        anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+        open={open}
+        autoHideDuration={4000}
+        onClose={handleClose}
+        message={`Rule Updated to ${amount}`}
+        action={action}
+      />
     </div>
   );
 }
