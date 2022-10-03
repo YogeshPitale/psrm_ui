@@ -50,7 +50,7 @@ function Header() {
     if (initialRender1.current > 1) {
       axios
         .post(
-          `http://localhost:8091/v1/psrm/throttleCurrentPosition?throttleCurrentPosition=${value}`
+          `http://localhost:8091/v1/psrm/throttleMaxAvailable?throttleMaxAvailable=${value}`
         )
         .then(function (response) {
           console.log(response);
