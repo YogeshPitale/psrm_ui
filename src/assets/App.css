@@ -85,6 +85,7 @@ body {
   text-align: center;
   padding: 5px;
   background: #ddd;
+  font-size:14px;
   border: 1px dashed #666;
 }
 
@@ -106,7 +107,8 @@ h2 {
 h3 {
   color: #333;
   margin-bottom: 15px;
-  background:#eee;
+  background:#ddd;
+  font-size:16px;
   padding:5px 10px;
   text-align: center;
 }

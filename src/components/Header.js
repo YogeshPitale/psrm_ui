@@ -14,6 +14,7 @@ import {
   IconButton,
   Slider,
   Divider,
+  Checkbox,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
@@ -131,7 +132,7 @@ function Header() {
         }}
       >
         <List>
-          <h3 style={{marginTop:"-15px"}}> Fed Level </h3>
+          <h3 style={{marginTop:"-15px"}}> Fed Level Throttling</h3>
           <ListItem>
             <b className="customBold"> All Debit Transactions </b>
             <Switch
@@ -141,7 +142,7 @@ function Header() {
             />
           </ListItem>
 
-          <h3> Miscellaneous </h3>
+          <h3> Debit Amount Based Throttling</h3>
           <ListItem>
             <b className="customBold">Debit Amount ></b>&nbsp;&nbsp;
             <TextField
@@ -185,13 +186,11 @@ function Header() {
               valueLabelDisplay="auto"
             />
           </ListItem>
-          <br></br>
-          <Divider />
-          <br></br>
+          <h3> Miscellaneous </h3>
           <ListItem>
+            <Checkbox label="yz" disabled checked/>
             <b className="customBold">Beneficiary Bank</b>
             &nbsp;&nbsp;
-
             <TextField
               id="standard-basic"
               value="CITI"
@@ -199,20 +198,22 @@ function Header() {
               variant="standard"
               color="warning"
               focused
+              disabled
             />
             <Button
               variant="text"
               style={{ marginLeft: "5px" }}
               size="small"
               color="error"
+              disabled
             >
               Submit
             </Button>
           </ListItem>
-          <br></br>
           <Divider />
           <br></br>
           <ListItem>
+          <Checkbox label="yz" disabled checked/>
             <b className="customBold">Payment Rail</b>
             &nbsp;&nbsp;
             <TextField
@@ -222,19 +223,18 @@ function Header() {
               variant="standard"
               color="warning"
               focused
-
+              disabled
             />
             <Button
               variant="text"
               style={{ marginLeft: "5px" }}
               size="small"
               color="error"
-
+              disabled
             >
               Submit
             </Button>
           </ListItem>
-          <br></br>
           <Divider />
         </List>
       </SlidingPane>
