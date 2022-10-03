@@ -10,6 +10,7 @@ import {
   Button,
   Snackbar,
   IconButton,
+  Divider,
 } from "@mui/material";
 import axios from "axios";
 
@@ -140,17 +141,18 @@ function LandingPage() {
         </Grid>
         <Grid item xs={7} style={{ marginTop: "20px", paddingTop: "6px" }}>
           <Grid container spacing={0}>
-            <Grid item xs style={{ textAlign: "center" }}>
-              <p
-                style={{
-                  marginTop: "-5px",
-                  paddingBottom: "20px",
-                  paddingTop: "6px",
-                }}
-              >
-                <b>Transactions On Hold : {onHoldCount}</b>
-              </p>
-            </Grid>
+          <Grid container style={{ marginLeft:"0px", marginBottom:"10px"}}>
+        <Grid
+              item
+              xs
+              style={{
+                marginTop: "-5px",
+                textAlign: "center",
+                paddingTop: "6px",
+              }}
+            >
+              <b style={{background:"#ddd", border:"0px", padding:"5px" }}>Transaction Summary </b>
+           </Grid>
             <Grid
               item
               xs
@@ -160,7 +162,7 @@ function LandingPage() {
                 paddingTop: "6px",
               }}
             >
-              <b>Transactions Received : {dataPoints.length}</b>
+              <b style={{background:"#FFC300", borderRadius:"5px", padding:"5px 10px", border:"0px"}}> Received : {dataPoints.length}</b>
               {/* <Switch
                 checked={checked}
                 onChange={handleChange}
@@ -176,31 +178,22 @@ function LandingPage() {
                 textAlign: "center",
               }}
             >
-              <b>Transactions Released : {dataPoints.length - onHoldCount}</b>
-              {/* <TextField
-                label="Rule"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">$</InputAdornment>
-                  ),
-                }}
-                sx={{ width: "10ch" }}
-                variant="standard"
-                color="warning"
-                value={amount}
-                onChange={(event) => setAmount(event.target.value)}
-                focused
-              />
-              <Button
-                variant="text"
-                style={{ marginTop: "17px", marginLeft: "5px" }}
-                onClick={handleKeyDown}
-                size="small"
-                color="error"
-              >
-                Submit
-              </Button> */}
+              <b style={{background:"#27AE60",borderRadius:"5px", padding:"5px 10px", border:"0px"}}> Processed : {dataPoints.length - onHoldCount}</b>
             </Grid>
+             <Grid item xs style={{ textAlign: "center" }}>
+                          <p
+                            style={{
+                              marginTop: "-5px",
+                              paddingBottom: "20px",
+                              paddingTop: "6px",
+                            }}
+                          >
+                            <b style={{background:"#FF3333", borderRadius:"5px",padding:"5px 10px", border:"0px"}}> On Hold : {onHoldCount}</b>
+                          </p>
+                        </Grid>
+
+          </Grid>
+
           </Grid>
           <DynamicLineChart dataPoints={dataPoints} />
         </Grid>

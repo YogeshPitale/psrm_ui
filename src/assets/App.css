@@ -64,7 +64,7 @@ body {
 .hover-underline-animation:after {
   content: '';
   position: absolute;
-  width: 58%;
+  width: 83%;
   transform: scaleX(0);
   height: 2px;
   bottom: 0;
@@ -101,6 +101,13 @@ body {
 h2 {
   color: #cd1409;
   margin-bottom: 5px;
+  text-align: center;
+}
+h3 {
+  color: #333;
+  margin-bottom: 15px;
+  background:#eee;
+  padding:5px 10px;
   text-align: center;
 }
 
@@ -188,7 +195,7 @@ button {
 }
 
 .App b {
-  color: #cd1409 !important;
+  color: #000;
   text-align: none !important;
   text-align: center;
   padding: 5px;

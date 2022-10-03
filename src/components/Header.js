@@ -110,19 +110,19 @@ function Header() {
       </span>
       <a href="#logout">Logout</a>
       <a href="#logout" style={{ color: "#fcc60a", paddingRight: "5px" }}>
-        <i className="fa fa-sign-out"></i>
+        | <i className="fa fa-sign-out"></i>
       </a>
-      <button
-        className="hover-underline-animation"
+      <a style={{marginRight:"-20px"}}
+        className="hover-underline-animation" href="#throtllingRules"
         onClick={() => setState({ isPaneOpen: true })}
       >
-        Rules
-      </button>
+        Throttling Rules
+      </a>
       <SlidingPane
         className="some-custom-class"
         overlayClassName="some-custom-overlay-class"
         isOpen={state.isPaneOpen}
-        title="Update Rules"
+        title="Throttling Rules"
         width="600px"
         // subtitle="Optional subtitle."
         onRequestClose={() => {
@@ -131,19 +131,19 @@ function Header() {
         }}
       >
         <List>
+          <h3 style={{marginTop:"-15px"}}> Fed Level </h3>
           <ListItem>
-            <b className="customBold">Throttle</b>
+            <b className="customBold"> All Debit Transactions </b>
             <Switch
               checked={checked}
               onChange={handleChange}
               inputProps={{ "aria-label": "controlled" }}
             />
           </ListItem>
-          <br></br>
-          <Divider />
-          <br></br>
+
+          <h3> Miscellaneous </h3>
           <ListItem>
-            <b className="customBold">Throttle on Amount</b>&nbsp;&nbsp;
+            <b className="customBold">Debit Amount ></b>&nbsp;&nbsp;
             <TextField
               // label="Amount"
               InputProps={{
@@ -173,7 +173,7 @@ function Header() {
           <br></br>
           <ListItem>
             <b className="customBold">
-              Throttle if Amount &#62; Current Position %
+             Debit Amount &#62; X% of Max Available
             </b>
             &nbsp;&nbsp;
             <Slider
@@ -189,8 +189,9 @@ function Header() {
           <Divider />
           <br></br>
           <ListItem>
-            <b className="customBold">Throttle on Bank Name</b>
+            <b className="customBold">Beneficiary Bank</b>
             &nbsp;&nbsp;
+
             <TextField
               id="standard-basic"
               value="CITI"
@@ -212,7 +213,7 @@ function Header() {
           <Divider />
           <br></br>
           <ListItem>
-            <b className="customBold">Throttle on Payment Rail</b>
+            <b className="customBold">Payment Rail</b>
             &nbsp;&nbsp;
             <TextField
               id="standard-basic"
@@ -221,14 +222,14 @@ function Header() {
               variant="standard"
               color="warning"
               focused
-              disabled
+
             />
             <Button
               variant="text"
               style={{ marginLeft: "5px" }}
               size="small"
               color="error"
-              disabled
+
             >
               Submit
             </Button>
