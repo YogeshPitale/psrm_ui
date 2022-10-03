@@ -6,6 +6,8 @@ import "react-sliding-pane/dist/react-sliding-pane.css";
 import DebitDrillDown from "./DebitDrillDown";
 import CreditDrillDown from "./CreditDrillDown";
 import axios from "axios";
+import { InfoOutlined } from "@mui/icons-material";
+import IconButton from "@mui/material/IconButton";
 
 function MonitorTable(props) {
   const [trans, setTrans] = useState([]);
@@ -33,7 +35,21 @@ function MonitorTable(props) {
       <table className="styled-table">
         <tbody>
           <tr style={{ background: "#ccc", fontWeight: "bold" }}>
-            <th style={{ color: "red", fontSize: "16px" }}>Current Position</th>
+            <th style={{ color: "red", fontSize: "16px" }}>
+              Current Position
+              <Tooltip title="Opening Balance + Net Fedwire" placement="right">
+                <IconButton
+                  sx={{
+                    fontSize: "13px",
+                    padding: "0px",
+                    marginLeft: "5px",
+                  }}
+                  color="error"
+                >
+                  <InfoOutlined fontSize="5px"></InfoOutlined>
+                </IconButton>
+              </Tooltip>
+            </th>
             <td>
               <Button
                 disabled={true}
@@ -62,7 +78,24 @@ function MonitorTable(props) {
             </td>
           </tr>
           <tr>
-            <th>Net Fedwire</th>
+            <th>
+              Net Fedwire
+              <Tooltip
+                title="Fedwire Credits - Fedwire Debits"
+                placement="right"
+              >
+                <IconButton
+                  sx={{
+                    fontSize: "13px",
+                    padding: "0px",
+                    marginLeft: "5px",
+                  }}
+                  color="error"
+                >
+                  <InfoOutlined fontSize="5px"></InfoOutlined>
+                </IconButton>
+              </Tooltip>
+            </th>
             <td>
               <Tooltip
                 title={
@@ -136,7 +169,21 @@ function MonitorTable(props) {
             </td>
           </tr>
           <tr>
-            <th>Safety Factor</th>
+            <th>
+              Safety Factor
+              <Tooltip title="10% of Cap" placement="right">
+                <IconButton
+                  sx={{
+                    fontSize: "13px",
+                    padding: "0px",
+                    marginLeft: "5px",
+                  }}
+                  color="error"
+                >
+                  <InfoOutlined fontSize="5px"></InfoOutlined>
+                </IconButton>
+              </Tooltip>
+            </th>
             <td>
               <Button
                 disabled={true}
@@ -150,7 +197,24 @@ function MonitorTable(props) {
             </td>
           </tr>
           <tr>
-            <th>Max Available</th>
+            <th>
+              Max Available
+              <Tooltip
+                title="Current Position + Cap - Safety Factor"
+                placement="right"
+              >
+                <IconButton
+                  sx={{
+                    fontSize: "13px",
+                    padding: "0px",
+                    marginLeft: "5px",
+                  }}
+                  color="error"
+                >
+                  <InfoOutlined fontSize="5px"></InfoOutlined>
+                </IconButton>
+              </Tooltip>
+            </th>
             <td>
               <Button
                 disabled={true}

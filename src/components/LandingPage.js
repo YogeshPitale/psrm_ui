@@ -26,9 +26,9 @@ function LandingPage() {
   });
   const [dataPoints, setDataPoints] = useState([]);
   const [onHoldCount, setOnHoldCount] = useState(0);
-  const [checked, setChecked] = useState(false);
-  const [amount, setAmount] = useState(800000);
-  const [open, setOpen] = React.useState(false);
+  // const [checked, setChecked] = useState(false);
+  // const [amount, setAmount] = useState(800000);
+  // const [open, setOpen] = React.useState(false);
 
   let initialRender2 = React.useRef(false);
   useEffect(() => {
@@ -70,65 +70,65 @@ function LandingPage() {
         });
   }, [data]);
 
-  let initialRender = React.useRef(0);
-  useEffect(() => {
-    if (initialRender.current > 1) {
-      axios
-        .post(`http://localhost:8091/v1/psrm/throttle?throttleValue=${checked}`)
-        .then(function (response) {
-          // console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    } else {
-      initialRender.current += 1;
-    }
-  }, [checked]);
+  // let initialRender = React.useRef(0);
+  // useEffect(() => {
+  //   if (initialRender.current > 1) {
+  //     axios
+  //       .post(`http://localhost:8091/v1/psrm/throttle?throttleValue=${checked}`)
+  //       .then(function (response) {
+  //         // console.log(response);
+  //       })
+  //       .catch(function (error) {
+  //         console.log(error);
+  //       });
+  //   } else {
+  //     initialRender.current += 1;
+  //   }
+  // }, [checked]);
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
-  };
+  // const handleChange = (event) => {
+  //   setChecked(event.target.checked);
+  // };
 
-  const handleKeyDown = () => {
-    axios
-      .post(`http://localhost:8091/v1/psrm/amount?amount=${amount}`)
-      .then(function (response) {
-        // console.log(response);
-        handleClick();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+  // const handleKeyDown = () => {
+  //   axios
+  //     .post(`http://localhost:8091/v1/psrm/amount?amount=${amount}`)
+  //     .then(function (response) {
+  //       // console.log(response);
+  //       handleClick();
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // };
 
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  // const handleClose = (event, reason) => {
+  //   if (reason === "clickaway") {
+  //     return;
+  //   }
 
-    setOpen(false);
-  };
+  //   setOpen(false);
+  // };
 
-  const handleClick = () => {
-    setOpen(true);
-  };
+  // const handleClick = () => {
+  //   setOpen(true);
+  // };
 
-  const action = (
-    <React.Fragment>
-      {/* <Button color="secondary" size="small" onClick={handleClose}>
-        UNDO
-      </Button> */}
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleClose}
-      >
-        <CloseIcon fontSize="small" />
-      </IconButton>
-    </React.Fragment>
-  );
+  // const action = (
+  //   <React.Fragment>
+  //     {/* <Button color="secondary" size="small" onClick={handleClose}>
+  //       UNDO
+  //     </Button> */}
+  //     <IconButton
+  //       size="small"
+  //       aria-label="close"
+  //       color="inherit"
+  //       onClick={handleClose}
+  //     >
+  //       <CloseIcon fontSize="small" />
+  //     </IconButton>
+  //   </React.Fragment>
+  // );
 
   return (
     <div className="App">
@@ -140,7 +140,7 @@ function LandingPage() {
         </Grid>
         <Grid item xs={7} style={{ marginTop: "20px", paddingTop: "6px" }}>
           <Grid container spacing={0}>
-            <Grid item xs>
+            <Grid item xs style={{ textAlign: "center" }}>
               <p
                 style={{
                   marginTop: "-5px",
@@ -155,27 +155,29 @@ function LandingPage() {
               item
               xs
               style={{
-                marginTop: "-7px",
+                marginTop: "-5px",
                 textAlign: "center",
+                paddingTop: "6px",
               }}
             >
-              <span>
-                <b>Throttle</b>
-              </span>
-              <Switch
+              <b>Transactions Received : {dataPoints.length}</b>
+              {/* <Switch
                 checked={checked}
                 onChange={handleChange}
                 inputProps={{ "aria-label": "controlled" }}
-              />
+              /> */}
             </Grid>
             <Grid
               item
               xs
               style={{
-                marginTop: "-20px",
+                marginTop: "-5px",
+                paddingTop: "6px",
+                textAlign: "center",
               }}
             >
-              <TextField
+              <b>Transactions Released : {dataPoints.length - onHoldCount}</b>
+              {/* <TextField
                 label="Rule"
                 InputProps={{
                   startAdornment: (
@@ -197,20 +199,20 @@ function LandingPage() {
                 color="error"
               >
                 Submit
-              </Button>
+              </Button> */}
             </Grid>
           </Grid>
           <DynamicLineChart dataPoints={dataPoints} />
         </Grid>
       </Grid>
-      <Snackbar
+      {/* <Snackbar
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         open={open}
         autoHideDuration={4000}
         onClose={handleClose}
         message={`Rule Updated to ${amount}`}
         action={action}
-      />
+      /> */}
     </div>
   );
 }
