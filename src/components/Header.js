@@ -17,6 +17,7 @@ import {
   Checkbox,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import axios from "axios";
 
 function Header() {
@@ -113,8 +114,10 @@ function Header() {
       <a href="#logout" style={{ color: "#fcc60a", paddingRight: "5px" }}>
         | <i className="fa fa-sign-out"></i>
       </a>
-      <a style={{marginRight:"-20px"}}
-        className="hover-underline-animation" href="#throtllingRules"
+      <a
+        style={{ marginRight: "-20px", paddingBottom: "5px" }}
+        className="hover-underline-animation"
+        href="#throtllingRules"
         onClick={() => setState({ isPaneOpen: true })}
       >
         Throttling Rules
@@ -130,9 +133,13 @@ function Header() {
           // triggered on "<" on left top click or on outside click
           setState({ isPaneOpen: false });
         }}
+        closeIcon=<i
+          className="fa fa-angle-right"
+          style={{ fontSize: "36px" }}
+        ></i>
       >
         <List>
-          <h3 style={{marginTop:"-15px"}}> Fed Level Throttling</h3>
+          <h3 style={{ marginTop: "-15px" }}> Fed Level Throttling</h3>
           <ListItem>
             <b className="customBold"> All Debit Transactions </b>
             <Switch
@@ -144,7 +151,7 @@ function Header() {
 
           <h3> Debit Amount Based Throttling</h3>
           <ListItem>
-            <b className="customBold">Debit Amount ></b>&nbsp;&nbsp;
+            <b className="customBold">Debit Amount</b>&nbsp;&nbsp;
             <TextField
               // label="Amount"
               InputProps={{
@@ -174,7 +181,7 @@ function Header() {
           <br></br>
           <ListItem>
             <b className="customBold">
-             Debit Amount &#62; X% of Max Available
+              Debit Amount &#62; {value}% of Max Available
             </b>
             &nbsp;&nbsp;
             <Slider
@@ -188,7 +195,7 @@ function Header() {
           </ListItem>
           <h3> Miscellaneous </h3>
           <ListItem>
-            <Checkbox label="yz" disabled checked/>
+            <Checkbox label="yz" disabled checked />
             <b className="customBold">Beneficiary Bank</b>
             &nbsp;&nbsp;
             <TextField
@@ -213,7 +220,7 @@ function Header() {
           <Divider />
           <br></br>
           <ListItem>
-          <Checkbox label="yz" disabled checked/>
+            <Checkbox label="yz" disabled checked />
             <b className="customBold">Payment Rail</b>
             &nbsp;&nbsp;
             <TextField

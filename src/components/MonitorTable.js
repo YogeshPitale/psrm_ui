@@ -252,6 +252,10 @@ function MonitorTable(props) {
           // triggered on "<" on left top click or on outside click
           setIsPaneOpen({ ofDebits: false });
         }}
+        closeIcon=<i
+          className="fa fa-angle-right"
+          style={{ fontSize: "36px" }}
+        ></i>
       >
         <DebitDrillDown debits={trans} />
       </SlidingPane>
@@ -264,6 +268,10 @@ function MonitorTable(props) {
           // triggered on "<" on left top click or on outside click
           setIsPaneOpen({ ofCredits: false });
         }}
+        closeIcon=<i
+          className="fa fa-angle-right"
+          style={{ fontSize: "36px" }}
+        ></i>
       >
         <CreditDrillDown credits={trans} />
       </SlidingPane>
