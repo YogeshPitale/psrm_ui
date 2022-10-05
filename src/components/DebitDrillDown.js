@@ -68,7 +68,7 @@ const DebitDrillDown = (props) => {
                     </TableCell>
                     <TableCell>
                       {row.status === "On Hold" && (
-                        <button className="button">Investigate</button>
+                        <button className="button">Release</button>
                       )}
                     </TableCell>
                   </TableRow>
@@ -98,7 +98,7 @@ const DebitDrillDown = (props) => {
                     </TableCell>
                     <TableCell>
                       {row.status === "On Hold" && (
-                        <button className="button">Investigate</button>
+                        <button className="button">Release</button>
                       )}
                     </TableCell>
                   </TableRow>

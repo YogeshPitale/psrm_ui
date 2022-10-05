@@ -181,7 +181,7 @@ function Header() {
           <br></br>
           <ListItem>
             <b className="customBold">
-              Debit Amount &#62; {value}% of Max Available
+              Debit Amount &#62; {value}% of Cap
             </b>
             &nbsp;&nbsp;
             <Slider
@@ -193,10 +193,10 @@ function Header() {
               valueLabelDisplay="auto"
             />
           </ListItem>
-          <h3> Miscellaneous </h3>
+          <h3> Others </h3>
           <ListItem>
             <Checkbox label="yz" disabled checked />
-            <b className="customBold">Beneficiary Bank</b>
+            <b className="customBold">Counterparty</b>
             &nbsp;&nbsp;
             <TextField
               id="standard-basic"
